@@ -34,6 +34,11 @@ public class UserController {
         userService.deleteAll();
     }
 
-
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public void edit(@RequestBody User user){
+        System.out.println("".length());
+        System.out.println(user.getId() + " " + user.getPassword().length());
+        userService.updateUserById(user.getId(), user);
+    }
 
 }

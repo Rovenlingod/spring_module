@@ -9,5 +9,6 @@ public interface UserService {
     void saveUser(User user);
     Boolean userChecker(User user);
     void deleteAll();
-
+    void updateUserById(Long id, User user);
+    User findByLogin(String login);
 }

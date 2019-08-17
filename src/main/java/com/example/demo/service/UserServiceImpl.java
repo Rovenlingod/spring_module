@@ -13,6 +13,7 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
+
     UserRepository userRepository;
 
     @Autowired
@@ -23,6 +24,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findAll() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public User findByLogin(String login) {
+        return userRepository.findByLogin(login);
     }
 
     @Override
@@ -44,5 +50,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteAll() {
         userRepository.deleteAll();
+    }
+
+    @Override
+    public void updateUserById(Long id, User user) {
+        User userFromDb = userRepository.findById(id);
+        if (!user.getLogin().isEmpty()){userFromDb.setLogin(user.getLogin());}
+        if (!user.getPassword().isEmpty()){userFromDb.setPassword(user.getPassword());}
+        if (!user.getName().isEmpty()){userFromDb.setName(user.getName());}
+        if (!user.getEmail().isEmpty()){userFromDb.setEmail(user.getEmail());}
+        userRepository.updateUser(userFromDb.getId(), userFromDb.getLogin(), userFromDb.getPassword(), userFromDb.getName(), userFromDb.getEmail());
+
     }
 }

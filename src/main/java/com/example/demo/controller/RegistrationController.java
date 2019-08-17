@@ -19,6 +19,6 @@ public class RegistrationController {
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public void saveNewUser(@RequestBody User user){
         System.out.println("im here");
-        userService.saveUser(user);
+        userService.saveUser(new User(user.getLogin(),user.getName(),user.getEmail(),user.getPassword()));
     }
 }

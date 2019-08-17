@@ -16,9 +16,12 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Boolean login(@RequestBody User user){
+    public Long login(@RequestBody User user){
         System.out.println("got to login");
-        return userService.userChecker(user);
+        if (userService.userChecker(user)){
+            return userService.findByLogin(user.getLogin()).getId();
+        }
+        return null;
     }
 
     @RequestMapping(value = "/login1", method = RequestMethod.POST)
