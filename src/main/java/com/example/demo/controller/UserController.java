@@ -28,7 +28,7 @@ public class UserController {
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public void addUser(){
-        userService.saveUser(new User("god", "jesus", "jesus@mail.ru", "imsatan"));
+        userService.saveUser(new User("test", "test", "test@mail.ru", "test"));
     }
 
     @RequestMapping(value = "/deleteAll", method = RequestMethod.GET)

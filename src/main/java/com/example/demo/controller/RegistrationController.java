@@ -20,7 +20,6 @@ public class RegistrationController {
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public ResponseEntity saveNewUser(@RequestBody User user){
-        System.out.println("im here");
         if (userService.loginAndEmailAvailability(user).equals("LOGIN")){
             return ResponseEntity.status(HttpStatus.ACCEPTED).body("LOGIN");
         }

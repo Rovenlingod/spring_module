@@ -1,12 +1,8 @@
 package com.example.demo.service;
 
 import com.example.demo.domain.User;
-import com.example.demo.enums.Response;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
