@@ -21,7 +21,7 @@ public class LoginController {
         if (userService.userChecker(user)){
             return userService.findByLogin(user.getLogin()).getId();
         }
-        return null;
+        return Long.parseLong("-1");
     }
 
     @RequestMapping(value = "/login1", method = RequestMethod.POST)

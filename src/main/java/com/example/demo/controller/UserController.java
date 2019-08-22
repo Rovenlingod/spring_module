@@ -4,6 +4,8 @@ package com.example.demo.controller;
 import com.example.demo.domain.User;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,10 +37,15 @@ public class UserController {
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public void edit(@RequestBody User user){
-        System.out.println("".length());
-        System.out.println(user.getId() + " " + user.getPassword().length());
+    public ResponseEntity edit(@RequestBody User user){
+        if (userService.loginAndEmailAvailability(user).equals("LOGIN")){
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body("LOGIN");
+        }
+        if (userService.loginAndEmailAvailability(user).equals("EMAIL")){
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body("EMAIL");
+        }
         userService.updateUserById(user.getId(), user);
+        return ResponseEntity.status(HttpStatus.OK).body("OK");
     }
 
 }

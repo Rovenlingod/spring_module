@@ -12,6 +12,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     User findByLoginAndPassword(String login, String password);
     User findByLogin(String login);
     User findById(Long id);
+    User findByEmail(String email);
     @Modifying
     @Transactional
     @Query("update User u set u.login = :login, u.password = :password, u.name = :name, u.email = :email where u.id = :id")
